@@ -1,0 +1,60 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn.lock
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Logs
+logs/
+*.log
+yarn-error.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Editor & System files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+
+# Build files
+dist/
+build/
+.cache/
+
+# React-specific files
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+
+# Database files
+database/*.db
+database/*.sqlite
+database/migrations/
+database/dumps/
+
+# Uploads (if storing locally)
+backend/uploads/
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Ignore dependency caching for Docker (if applicable)
+.dockerignore
+docker-compose.override.yml
+
+# Ignore generated API documentation
+docs/_site/
+docs/api/
+
