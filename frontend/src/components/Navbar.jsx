@@ -23,7 +23,7 @@ const Navbar = () => {
         <nav className="bg-gradient-to-r from-blue-700 to-blue-500 text-white px-6 py-4 shadow-lg">
             <div className="flex justify-between items-center max-w-6xl mx-auto">
                 <Link to="/" className="text-3xl font-extrabold tracking-wide">
-                    OCX <span className="text-yellow-400">Marketplace</span>
+                    CGU <span className="text-yellow-400">Marketplace</span>
                 </Link>
 
                 {/* Mobile Menu Button */}
@@ -56,7 +56,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Link to="/login" className="bg-green-500 px-5 py-2 rounded-full hover:bg-green-600 transition transform hover:scale-105 shadow-lg">
+                            <Link to="/login" className="bg-green-500 px-5">
                                 Login
                             </Link>
                             <Link to="/register" className="bg-yellow-400 px-5 py-2 rounded-full hover:bg-yellow-500 transition transform hover:scale-105 shadow-lg">

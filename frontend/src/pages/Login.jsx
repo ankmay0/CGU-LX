@@ -1,63 +1,78 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import anime from "animejs";
 
-const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
+const LoginForm = () => {
+  const [current, setCurrent] = useState(null);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Validate college email (example: @college.edu)
-        if (!email.endsWith("@college.edu")) {
-            setError("Only college emails are allowed.");
-            return;
-        }
-
-        // Simulate authentication (Replace with actual backend API)
-        if (email === "student@college.edu" && password === "password123") {
-            alert("Login successful!");
-            navigate("/home"); // Redirect to Home after login
-        } else {
-            setError("Invalid credentials. Please try again.");
-        }
-    };
-
-    return (
-        <div className="flex justify-center items-center h-screen">
-            <div className="bg-white p-6 rounded-lg shadow-md w-96">
-                <h2 className="text-2xl font-bold text-center text-blue-600 mb-4">Login</h2>
-
-                {error && <p className="text-red-500 text-center">{error}</p>}
-
-                <form onSubmit={handleSubmit}>
-                    <label className="block font-semibold">Email:</label>
-                    <input 
-                        type="email" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full border px-3 py-2 rounded mb-3"
-                        required
-                    />
-
-                    <label className="block font-semibold">Password:</label>
-                    <input 
-                        type="password" 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-full border px-3 py-2 rounded mb-3"
-                        required
-                    />
-
-                    <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-700">
-                        Login
-                    </button>
-                </form>
-            </div>
-        </div>
+  const animatePath = (offset, array) => {
+    if (current) current.pause();
+    setCurrent(
+      anime({
+        targets: "path",
+        strokeDashoffset: {
+          value: offset,
+          duration: 700,
+          easing: "easeOutQuart",
+        },
+        strokeDasharray: {
+          value: array,
+          duration: 700,
+          easing: "easeOutQuart",
+        },
+      })
     );
+  };
+
+  return (
+    <div className="page">
+      <div className="container">
+        <div className="left">
+          <div className="login">Login</div>
+          <div className="eula">
+            By logging in you agree to the ridiculously long terms that you didn't
+            bother to read
+          </div>
+        </div>
+        <div className="right">
+          <svg viewBox="0 0 320 300">
+            <defs>
+              <linearGradient id="linearGradient" x1="13" y1="193.5" x2="307" y2="193.5" gradientUnits="userSpaceOnUse">
+                <stop style={{ stopColor: "#ff00ff" }} offset="0" />
+                <stop style={{ stopColor: "#ff0000" }} offset="1" />
+              </linearGradient>
+            </defs>
+            <path
+              d="m 40,120 240,0 c 0,0 25,0.8 25,35 0,34.2 -25,35 -25,35 h -240 c 0,-0.02 -25,4.01 -25,38.5 0,34.49 25,38.5 25,38.5 h 215 c 0,0 20,-1 20,-25 0,-24 -20,-25 -20,-25 h -190 c 0,0 -20,1.71 -20,25 0,24 20,25 20,25 h 168.57"
+              fill="none"
+              stroke="url(#linearGradient)"
+              strokeWidth="4"
+              strokeDasharray="240 1386"
+            />
+          </svg>
+          <div className="form">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              onFocus={() => animatePath(0, "240 1386")}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              onFocus={() => animatePath(-336, "240 1386")}
+            />
+            <input
+              type="submit"
+              id="submit"
+              value="Submit"
+              onFocus={() => animatePath(-730, "530 1386")}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default Login;
+export default LoginForm;
