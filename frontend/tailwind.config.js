@@ -1,11 +1,7 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx,css,html}"], // Ensure Tailwind scans your React files
+  content: ["./src/**/*.{js,jsx,ts,tsx,css,html}"],
   theme: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/postcss"),
-  require("autoprefixer")]
+  plugins: [],
 };
-
-

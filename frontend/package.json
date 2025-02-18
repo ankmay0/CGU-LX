@@ -5,6 +5,8 @@
   "dependencies": {
     "animejs": "^3.2.2",
     "cra-template": "1.2.0",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^10.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",
@@ -34,8 +36,9 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.0.6",
-    "postcss-flexbugs-fixes": "^5.0.2"
-  }
+"devDependencies": {
+  "autoprefixer": "^10.4.20",
+  "postcss": "^8.5.2",
+  "tailwindcss": "^4.0.6"
+}
 }
