@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -9,10 +10,10 @@ const Register = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate college email (example: @college.edu)
+        // Validate college email
         if (!email.endsWith("@college.edu")) {
             setError("Only college emails are allowed.");
             return;
@@ -24,9 +25,22 @@ const Register = () => {
             return;
         }
 
-        // Simulate registration (Replace with actual backend API)
-        alert("Registration successful! Please log in.");
-        navigate("/login"); // Redirect to login page
+        try {
+            const res = await axios.post("http://localhost:5000/api/register", {
+                name,
+                email,
+                password,
+            });
+        
+            console.log("Registration Response:", res.data);
+            alert(res.data.message);
+            navigate("/login");
+        
+        } catch (error) {
+            console.error("Registration Error:", error.response?.data || error);
+            setError(error.response?.data?.error || "Registration failed");
+        }
+        
     };
 
     return (
