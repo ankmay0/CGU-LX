@@ -4,7 +4,7 @@ const ProductCard = ({ product }) => {
     return (
         <div className="bg-white shadow-md rounded-lg p-4">
             <img 
-                src={product.imageUrl} 
+                src={product.logo.svg} 
                 alt={product.title} 
                 className="w-full h-40 object-cover rounded-md"
             />
