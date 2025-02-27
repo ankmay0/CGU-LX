@@ -56,7 +56,8 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Link to="/login" className="bg-green-500 px-5">
+                            <Link to="/login" className="bg-green-500 px-5 py-2 rounded-full text-white font-semibold hover:bg-green-600 transition duration-300 transform hover:scale-105 shadow-lg"
+                            >
                                 Login
                             </Link>
                             <Link to="/register" className="bg-yellow-400 px-5 py-2 rounded-full hover:bg-yellow-500 transition transform hover:scale-105 shadow-lg">
@@ -90,7 +91,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Link to="/login" className="bg-green-500 px-5 py-2 rounded-full hover:bg-green-600 transition transform hover:scale-105 shadow-lg">
+                            <Link to="/login" className="bg-green-500 px-5 py-2 rounded-full text-white font-semibold hover:bg-green-600 transition duration-300 transform hover:scale-105 shadow-lg">
                                 Login
                             </Link>
                             <Link to="/register" className="bg-yellow-400 px-5 py-2 rounded-full hover:bg-yellow-500 transition transform hover:scale-105 shadow-lg">

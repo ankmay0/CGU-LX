@@ -28,7 +28,8 @@ const Login = () => {
       <div className="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
         <h2 className="text-2xl font-bold text-center text-gray-800">Login</h2>
         <p className="text-center text-gray-500 text-sm mt-2">
-          By logging in you agree to the ridiculously long terms that you didn't bother to read.
+          We are comming soon... you cant login yet.
+          {/* By logging in you agree to the ridiculously long terms that you didn't bother to read. */}
         </p>
 
         {error && <p className="text-red-500 text-center mt-2">{error}</p>}
