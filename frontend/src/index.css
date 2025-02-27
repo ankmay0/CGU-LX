@@ -87,3 +87,22 @@ code {
   border-radius: 4px;
   text-decoration: none;
 }
+/* Ensure full-height layout */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure content fills available space */
+.app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer stays at the bottom */
+footer {
+  margin-top: auto;
+}

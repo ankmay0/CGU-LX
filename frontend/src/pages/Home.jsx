@@ -1,24 +1,27 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import ProductList from "../components/ProductList";
-import Footer from "../components/Footer";
 import Carousel from "../components/Carousel";
 
+const products = [
+  { id: 1, name: "Laptop", price: 50000, image: "/laptop.jpg" },
+  { id: 2, name: "Smartphone", price: 30000, image: "/smartphone.jpg" },
+  { id: 3, name: "Headphones", price: 2000, image: "/headphones.jpg" },
+];
 
 function Home() {
   return (
     <div className="app-content">
-      <Navbar />
-      
       {/* Carousel Section */}
       <Carousel />
+
       {/* Featured Products Section */}
-      <div className="container mx-auto p-4">
-        <h1 className="text-3xl font-bold mb-4">Featured Products</h1>
-        <ProductList />
+      <div>
+          <ProductList products={products} />
       </div>
 
-      <Footer />
+      <div className="container mx-auto p-4">
+        <h1 className="text-3xl font-bold mb-4">Featured Products</h1>
+      </div>
     </div>
   );
 }

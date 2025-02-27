@@ -1,30 +1,38 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const images = [
   "/carousel1.jpg",
   "/carousel2.jpg",
   "/carousel3.jpg",
-  "/carousel4.jpg",
-  "/carousel5.jpg"
 ];
 
 const Carousel = () => {
   return (
-    <div className="w-full max-w-4xl mx-auto mt-6">
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+    <div className="w-full">
+      <Swiper
+        modules={[Autoplay, Navigation, Pagination]}
+        spaceBetween={0}
+        slidesPerView={1}
+        autoplay={{ delay: 3000, disableOnInteraction: false }} // Auto-slide every 3s
+        loop={true} // Infinite loop
+        navigation={true} // Arrows
+        pagination={{ clickable: true }} // Dots below
+        className="w-full h-[200px]" // Full width & height
+      >
         {images.map((src, index) => (
           <SwiperSlide key={index}>
             <img
-              src={src}
+              src={src} 
               alt={`Slide ${index + 1}`}
-              className="w-full h-64 object-cover rounded-lg"
+              className="w-full h-full object-cover"
               onError={(e) => {
                 console.error("Image not found:", e.target.src);
-                e.target.src = "/fallback.jpg"; // Replace with a default fallback image
+                e.target.src = "/carousel1.jpg"; // Fallback image
               }}
             />
           </SwiperSlide>

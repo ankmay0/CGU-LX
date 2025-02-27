@@ -1,8 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
-
-
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -17,51 +15,21 @@ import UserProfile from "./components/UserProfile";
 function App() {
     return (
         <AuthProvider>
-            <Router>
+            <div className="app-content">
                 <Navbar />
                 <Routes>
-                    {/* Public Routes */}
+                    <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-
-                    {/* Protected Routes */}
-                    <Route 
-                        path="/" 
-                        element={
-                            <ProtectedRoute>
-                                <Home />
-                            </ProtectedRoute>
-                        } 
-                    />
-                    <Route 
-                        path="/sell" 
-                        element={
-                            <ProtectedRoute>
-                                <Sell />
-                            </ProtectedRoute>
-                        } 
-                    />
-                    <Route 
-                        path="/buy" 
-                        element={
-                            <ProtectedRoute>
-                                <Buy />
-                            </ProtectedRoute>
-                        } 
-                    />
-                    <Route 
-                        path="/profile" 
-                        element={
-                            <ProtectedRoute>
-                                <UserProfile />
-                            </ProtectedRoute>
-                        } 
-                    />
+                    <Route path="/sell" element={<ProtectedRoute><Sell /></ProtectedRoute>} />
+                    <Route path="/buy" element={<ProtectedRoute><Buy /></ProtectedRoute>} />
+                    <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
                 </Routes>
                 <Footer />
-            </Router>
+            </div>
         </AuthProvider>
     );
 }
+
 
 export default App;
