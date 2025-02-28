@@ -45,10 +45,10 @@ const EarlyBirdCarousel = () => {
 
   return (
     <div className="relative flex items-center justify-center h-screen bg-gray-100 overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
-        <h2 className="ml15 text-7xl font-bold text-white">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-0.001 text-center z-10">
+        {/* <h2 className="ml15 text-7xl font-bold text-white">
           <span className="word">Coming Soon...</span>
-        </h2>
+        </h2> */}
         <button
           onClick={() => navigate("/register")}
           className="signup-btn mt-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition transform hover:scale-105"

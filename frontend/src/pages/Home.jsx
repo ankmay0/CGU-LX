@@ -7,6 +7,7 @@ const products = [
   { id: 1, name: "Laptop", price: 50000, image: "/laptop.jpg" },
   { id: 2, name: "Smartphone", price: 30000, image: "/smartphone.jpg" },
   { id: 3, name: "Headphones", price: 2000, image: "/headphones.jpg" },
+  { id: 3, name: "bed", price: 2000, image: "/headphones.jpg" },
 ];
 
 function Home() {

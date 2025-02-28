@@ -14,7 +14,7 @@ const Register = () => {
         e.preventDefault();
 
         // Validate college email
-        if (!email.endsWith("@college.edu")) {
+        if (!email.endsWith("@cgu-odisha.ac.in")) {
             setError("Only college emails are allowed.");
             return;
         }
@@ -26,7 +26,7 @@ const Register = () => {
         }
 
         try {
-            const res = await axios.post("http://localhost:5000/api/register", {
+            const res = await axios.post("http://localhost:5000/api/users/register", {
                 name,
                 email,
                 password,

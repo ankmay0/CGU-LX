@@ -6,9 +6,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const images = [
-  "/carousel1.jpg",
-  "/carousel2.jpg",
-  "/carousel3.jpg",
+  "/temp1.png",
+  "/temp2.png",
+  "/temp3.png",
 ];
 
 const Carousel = () => {
@@ -22,7 +22,7 @@ const Carousel = () => {
         loop={true} // Infinite loop
         navigation={true} // Arrows
         pagination={{ clickable: true }} // Dots below
-        className="w-full h-[200px]" // Full width & height
+        className="w-full h-[600px]" // Full width & height
       >
         {images.map((src, index) => (
           <SwiperSlide key={index}>
