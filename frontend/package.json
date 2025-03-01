@@ -1,11 +1,26 @@
 {
+  "author": {
+    "name": "Mayank Kumar",
+    "email": "workformayank0@gmail.com"
+  },
+  "description": "This project is a marketplace for our college students to buy and sell products.",
+  "keywords": [
+    "Buy",
+    "Sell",
+    "Rent",
+    "Products",
+    "marketplace",
+    "college",
+    "students"
+  ],
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv": "^8.17.1",
     "animejs": "^3.2.2",
     "axios": "^1.7.9",
-    "cra-template": "1.2.0",
+    "cra-template": "^1.3.0",
     "firebase": "^11.3.1",
     "framer-motion": "^12.4.4",
     "postcss-loader": "^8.1.1",
@@ -13,7 +28,10 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "react-slick": "^0.30.3",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.2.4"
   },
   "scripts": {
     "start": "react-scripts start",

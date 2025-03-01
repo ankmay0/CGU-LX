@@ -58,3 +58,4 @@ docker-compose.override.yml
 docs/_site/
 docs/api/
 
+firebaseConfig.js

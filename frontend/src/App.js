@@ -1,8 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
+import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./routes/ProtectedRoute";
-
-
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -16,51 +13,18 @@ import UserProfile from "./components/UserProfile";
 
 function App() {
     return (
-        <AuthProvider>
-            <Router>
-                <Navbar />
-                <Routes>
-                    {/* Public Routes */}
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-
-                    {/* Protected Routes */}
-                    <Route 
-                        path="/" 
-                        element={
-                            <ProtectedRoute>
-                                <Home />
-                            </ProtectedRoute>
-                        } 
-                    />
-                    <Route 
-                        path="/sell" 
-                        element={
-                            <ProtectedRoute>
-                                <Sell />
-                            </ProtectedRoute>
-                        } 
-                    />
-                    <Route 
-                        path="/buy" 
-                        element={
-                            <ProtectedRoute>
-                                <Buy />
-                            </ProtectedRoute>
-                        } 
-                    />
-                    <Route 
-                        path="/profile" 
-                        element={
-                            <ProtectedRoute>
-                                <UserProfile />
-                            </ProtectedRoute>
-                        } 
-                    />
-                </Routes>
-                <Footer />
-            </Router>
-        </AuthProvider>
+        <div className="app-content">
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/sell" element={<ProtectedRoute><Sell /></ProtectedRoute>} />
+                <Route path="/buy" element={<Buy />} />  {/* Removed ProtectedRoute */}
+                <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+            </Routes>
+            <Footer />
+        </div>
     );
 }
 

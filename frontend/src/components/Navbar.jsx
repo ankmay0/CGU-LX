@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { getAuth, signOut } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";  // ✅ Import auth directly
+import { signOut } from "firebase/auth";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
-    const { currentUser } = useContext(AuthContext);
+    const { user } = useContext(AuthContext); // ✅ Fixed: Use 'user' instead of 'currentUser'
     const navigate = useNavigate();
-    const auth = getAuth();
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleLogout = async () => {
@@ -22,7 +22,7 @@ const Navbar = () => {
     return (
         <nav className="bg-gradient-to-r from-blue-700 to-blue-500 text-white px-6 py-4 shadow-lg">
             <div className="flex justify-between items-center max-w-6xl mx-auto">
-                <Link to="/" className="text-3xl font-extrabold tracking-wide">
+                <Link to="/" className="text-3xl font-extrabold tracking-wide" onClick={() => setMenuOpen(false)}>
                     CGU <span className="text-yellow-400">Marketplace</span>
                 </Link>
 
@@ -44,7 +44,7 @@ const Navbar = () => {
                     <Link to="/buy" className="hover:text-yellow-300 transition transform hover:scale-105">Buy</Link>
                     <Link to="/sell" className="hover:text-yellow-300 transition transform hover:scale-105">Sell</Link>
 
-                    {currentUser ? (
+                    {user ? ( // ✅ Fixed: Use 'user' instead of 'currentUser'
                         <>
                             <Link to="/profile" className="hover:text-yellow-300 transition transform hover:scale-105">Profile</Link>
                             <button 
@@ -56,7 +56,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Link to="/login" className="bg-green-500 px-5">
+                            <Link to="/login" className="bg-green-500 px-5 py-2 rounded-full text-white font-semibold hover:bg-green-600 transition duration-300 transform hover:scale-105 shadow-lg">
                                 Login
                             </Link>
                             <Link to="/register" className="bg-yellow-400 px-5 py-2 rounded-full hover:bg-yellow-500 transition transform hover:scale-105 shadow-lg">
@@ -75,14 +75,17 @@ const Navbar = () => {
                     transition={{ duration: 0.3 }}
                     className="md:hidden flex flex-col items-center mt-3 space-y-4 bg-blue-600 py-4 rounded-lg shadow-xl"
                 >
-                    <Link to="/buy" className="hover:text-yellow-300 transition transform hover:scale-105">Buy</Link>
-                    <Link to="/sell" className="hover:text-yellow-300 transition transform hover:scale-105">Sell</Link>
+                    <Link to="/buy" onClick={() => setMenuOpen(false)} className="hover:text-yellow-300 transition transform hover:scale-105">Buy</Link>
+                    <Link to="/sell" onClick={() => setMenuOpen(false)} className="hover:text-yellow-300 transition transform hover:scale-105">Sell</Link>
                     
-                    {currentUser ? (
+                    {user ? (
                         <>
-                            <Link to="/profile" className="hover:text-yellow-300 transition transform hover:scale-105">Profile</Link>
+                            <Link to="/profile" onClick={() => setMenuOpen(false)} className="hover:text-yellow-300 transition transform hover:scale-105">Profile</Link>
                             <button 
-                                onClick={handleLogout} 
+                                onClick={() => {
+                                    handleLogout();
+                                    setMenuOpen(false);  // ✅ Close menu on logout
+                                }} 
                                 className="bg-red-500 px-5 py-2 rounded-full hover:bg-red-600 transition transform hover:scale-105 shadow-lg"
                             >
                                 Logout
@@ -90,10 +93,10 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Link to="/login" className="bg-green-500 px-5 py-2 rounded-full hover:bg-green-600 transition transform hover:scale-105 shadow-lg">
+                            <Link to="/login" onClick={() => setMenuOpen(false)} className="bg-green-500 px-5 py-2 rounded-full text-white font-semibold hover:bg-green-600 transition duration-300 transform hover:scale-105 shadow-lg">
                                 Login
                             </Link>
-                            <Link to="/register" className="bg-yellow-400 px-5 py-2 rounded-full hover:bg-yellow-500 transition transform hover:scale-105 shadow-lg">
+                            <Link to="/register" onClick={() => setMenuOpen(false)} className="bg-yellow-400 px-5 py-2 rounded-full hover:bg-yellow-500 transition transform hover:scale-105 shadow-lg">
                                 Register
                             </Link>
                         </>
