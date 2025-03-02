@@ -7,6 +7,7 @@ const Buy = () => {
         { id: 1, name: "Laptop", price: 500, image: "https://via.placeholder.com/150" },
         { id: 2, name: "Textbooks", price: 30, image: "https://via.placeholder.com/150" },
         { id: 3, name: "Headphones", price: 80, image: "https://via.placeholder.com/150" },
+        { id: 3, name: "Headphones", price: 80, image: "https://via.placeholder.com/150" },
     ]);
 
     return (

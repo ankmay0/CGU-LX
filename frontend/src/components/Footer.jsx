@@ -6,7 +6,7 @@ const Footer = () => {
                 <a href="/about" className="hover:underline mx-2">About</a> |
                 <a href="/terms" className="hover:underline mx-2">Terms</a> |
                 <a href="/privacy" className="hover:underline mx-2">Privacy</a> |
-                <a href="mailto:support@university.edu" className="hover:underline mx-2">Contact</a>
+                <a href="cgumarketplace@gmail.com" className="hover:underline mx-2">Contact</a>
             </p>
         </footer>
     );

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { auth, googleProvider } from "../firebase/firebaseConfig";
+import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +10,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Handle Email & Password Login
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
@@ -26,12 +27,56 @@ const Login = () => {
     }
   };
 
+  // Handle Google Sign-In
+  const handleGoogleSignIn = async () => {
+    setError("");
+    setLoading(true);
+
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const email = result.user.email;
+
+      // Restrict to college emails
+      if (!email.endsWith("@cgu-odisha.ac.in")) {
+        setError("Use your college email (@cgu-odisha.ac.in) to log in.");
+        setLoading(false);
+        return;
+      }
+
+      // Get Firebase ID Token
+      const idToken = await result.user.getIdToken();
+
+      // Send login request to backend with token
+      const response = await fetch("http://localhost:5000/api/auth/google-login", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${idToken}`  
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        console.log("User logged in successfully!");
+        navigate("/"); // Redirect to home page
+      } else {
+        setError(data.message || "Login failed.");
+      }
+    } catch (error) {
+      console.error("Google Sign-In Error:", error.message);
+      setError("Google Sign-In failed.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
         <h2 className="text-2xl font-bold text-center text-gray-800">Login</h2>
 
-        {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+        {error && <p className="text-red-500">{error}</p>}
 
         <form className="mt-6" onSubmit={handleLogin}>
           <div className="mb-4">
@@ -64,6 +109,14 @@ const Login = () => {
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
+
+        <button
+          onClick={handleGoogleSignIn}
+          className="w-full bg-red-500 text-white py-2 rounded-md mt-4 hover:bg-red-600 transition"
+          disabled={loading}
+        >
+          {loading ? "Logging in..." : "Login with Google"}
+        </button>
       </div>
     </div>
   );
