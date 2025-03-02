@@ -1,0 +1,71 @@
+[33mcommit ec35fdfe1e88603fa22c7e6d501406d683e194cc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: ankmay0 <153919929+ankmay0@users.noreply.github.com>
+Date:   Sun Mar 2 22:18:28 2025 +0530
+
+    Update README.md
+
+[33mcommit e7b366af46407372a2bb010e3cdd2c0ee4fd78dd[m
+Author: ankmay0 <153919929+ankmay0@users.noreply.github.com>
+Date:   Sun Mar 2 22:14:30 2025 +0530
+
+    Save progress before rebase
+
+[33mcommit 44b03ebd0eafb5f196bb26e1d0a11263ce424dbd[m
+Author: ankmay0 <153919929+ankmay0@users.noreply.github.com>
+Date:   Sat Mar 1 21:17:54 2025 +0530
+
+    cleaned backend
+
+[33mcommit 2cea1a46e382c5403a88eaa8346f2fd30ad2a06c[m
+Author: Deepshikha Keshri <deepshikhakeshri2403@gmail.com>
+Date:   Wed Feb 19 19:37:49 2025 +0530
+
+    Removed sensitive file
+
+[33mcommit bf6e843a356303d86d8ac4adc7b67cfc884b1412[m
+Author: ankmay0 <153919929+ankmay0@users.noreply.github.com>
+Date:   Tue Feb 18 10:50:54 2025 +0530
+
+    corrected package.json for tailwind postcss
+
+[33mcommit 0338e6874c8c380c6b2c6c2e02e484082069db06[m
+Author: ankmay0 <153919929+ankmay0@users.noreply.github.com>
+Date:   Sun Feb 16 12:50:24 2025 +0530
+
+    Deleted unnecessary files
+
+[33mcommit 5d0f2f815305e75e03520de4ef55029f4023a8d2[m
+Author: ankmay0 <153919929+ankmay0@users.noreply.github.com>
+Date:   Sat Feb 15 14:57:52 2025 +0530
+
+    corectted the login page
+
+[33mcommit 9065081cdf82ef22ec5aed86eba59d4bc05cbb28[m
+Author: ankmay0 <153919929+ankmay0@users.noreply.github.com>
+Date:   Sat Feb 15 14:29:38 2025 +0530
+
+    corrected the tailwind
+
+[33mcommit 30155e9092dbb2f46c8682e122a177eaa0722097[m
+Author: ankmay0 <153919929+ankmay0@users.noreply.github.com>
+Date:   Fri Feb 14 14:55:15 2025 +0530
+
+    added components and pages
+
+[33mcommit b2fd4b64ceb0ddbc522160a8992b30ec97c58694[m
+Author: Deepshikha Keshri <deepshikhakeshri2403@gmail.com>
+Date:   Fri Feb 7 19:55:45 2025 +0530
+
+    Added remaining files
+
+[33mcommit 427e565d37c3ab664a8efbb48292c10fdb91f635[m
+Author: ankmay0 <153919929+ankmay0@users.noreply.github.com>
+Date:   Fri Feb 7 19:19:59 2025 +0530
+
+    Update
+
+[33mcommit ce6bd0d3bcf3d88b0da6f448641458e6c71b8d87[m
+Author: ankmay0 <153919929+ankmay0@users.noreply.github.com>
+Date:   Fri Feb 7 15:11:31 2025 +0530
+
+    Initial commit

@@ -29,44 +29,7 @@ auth.languageCode = "en"; // OTP messages in English
 const googleProvider = new GoogleAuthProvider();
 googleProvider.addScope("https://www.googleapis.com/auth/userinfo.profile");
 
-// ✅ Function to set up reCAPTCHA verifier
-const setUpRecaptcha = () => {
-    if (!window.recaptchaVerifier) {
-        window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
-            size: "invisible",
-            callback: () => console.log("reCAPTCHA verified!"),
-            "expired-callback": () => {
-                console.log("reCAPTCHA expired. Resetting...");
-                window.recaptchaVerifier.clear();
-                setUpRecaptcha();
-            }
-        });
-    }
-};
 
-// ✅ Function to send OTP
-const sendOTP = async (phoneNumber) => {
-    try {
-        setUpRecaptcha(); // Ensure reCAPTCHA is initialized
-        const appVerifier = window.recaptchaVerifier;
-        const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
-        return confirmationResult;
-    } catch (error) {
-        console.error("Error sending OTP:", error);
-        throw error;
-    }
-};
 
-// ✅ Function to verify OTP
-const verifyOTP = async (confirmationResult, otp) => {
-    try {
-        const result = await confirmationResult.confirm(otp);
-        return result.user; // Return authenticated user
-    } catch (error) {
-        console.error("Error verifying OTP:", error);
-        throw error;
-    }
-};
-
-export { auth, googleProvider, signInWithPopup, sendOTP, verifyOTP };
+export { auth, googleProvider, signInWithPopup };
 export default app;
