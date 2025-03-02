@@ -36,6 +36,7 @@ frontend/
 backend/
 │── config/
 │   ├── db.js                # MongoDB connection setup
+│   ├── firebaseAdminConfig.json 
 │── controllers/
 │   ├── authController.js    # Handles user authentication (login/register)
 │   ├── productController.js # Handles product CRUD operations
