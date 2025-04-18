@@ -10,7 +10,7 @@ import { useAuth } from "../contexts/AuthContext";
 import "../custom-css/Carousel.css";
 
 const desktopImages = ["/temp01.png", "/temmp02.png"];
-const mobileImages = ["/mobile01.jpg", "/mobile02.jpg"];
+const mobileImages = ["/mobile01.jpg", "/mobile02.jpg", "/mobile05.png", "/mobile04.png"];
 
 const Carousel = () => {
   const { user } = useAuth();
