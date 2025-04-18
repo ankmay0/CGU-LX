@@ -25,6 +25,14 @@ export const googleLogin = async (req, res) => {
             return res.status(401).json({ success: false, message: "User not registered." });
         }
 
+        // Set cookie with token, expires in 1 day
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
+            sameSite: "lax",
+            secure: process.env.NODE_ENV === "production",
+        });
+
         // ✅ Return user data
         return res.json({ success: true, token, user });
 
@@ -34,7 +42,40 @@ export const googleLogin = async (req, res) => {
     }
 };
 
+// New endpoint to refresh token cookie
+export const refreshToken = async (req, res) => {
+    try {
+        const token = req.cookies.token;
+        if (!token) {
+            return res.status(401).json({ success: false, message: "No token provided" });
+        }
 
+        // Verify current token
+        const decodedToken = await admin.auth().verifyIdToken(token);
+        const { email } = decodedToken;
+
+        // Find user
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(401).json({ success: false, message: "User not registered." });
+        }
+
+        // Get new token from Firebase Admin SDK (simulate refresh)
+        // Firebase tokens are short-lived, so client should get new token from Firebase SDK
+        // Here, just re-set the cookie with the same token for demonstration
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000,
+            sameSite: "lax",
+            secure: process.env.NODE_ENV === "production",
+        });
+
+        return res.json({ success: true, message: "Token refreshed" });
+    } catch (error) {
+        console.error("🚨 Token Refresh Error:", error);
+        return res.status(401).json({ success: false, message: "Invalid or expired token" });
+    }
+};
 
 export const googleRegister = async (req, res) => {
     try {
@@ -79,7 +120,6 @@ export const getProfile = async (req, res) => {
         return res.status(500).json({ success: false, message: "Server error" });
     }
 };
-
 
 export const updateProfile = async (req, res) => {
     if (!req.user || !req.user.email) {

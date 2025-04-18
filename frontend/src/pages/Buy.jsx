@@ -8,7 +8,6 @@ import "swiper/css/pagination";
 import Filter from "../components/Filter";
 import AllProducts from "../components/AllProducts";
 
-
 const Buy = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,6 +31,16 @@ const Buy = () => {
     if (selectedProduct) setCurrentImageIndex(0);
   }, [selectedProduct]);
 
+  // Utility function to shuffle an array
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
   const fetchProducts = async () => {
     setLoading(true);
     const queryParams = new URLSearchParams();
@@ -51,7 +60,9 @@ const Buy = () => {
         if (data.products.length === 0) {
           console.warn("No products found");
         }
-        setProducts(data.products);
+        // Shuffle products before setting state
+        const shuffledProducts = shuffleArray(data.products);
+        setProducts(shuffledProducts);
       } else {
         setProducts([]);
         console.error("Error:", data.message);
@@ -78,8 +89,6 @@ const Buy = () => {
     }
   };
   
-  
-
   const handleFilterChange = (newFilters) => {
     console.log("Filters received from Filter component:", newFilters);
     setFilters(newFilters);

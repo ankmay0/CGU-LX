@@ -12,26 +12,26 @@
 //  export default admin; // Export initialized instanceon 
 
 // // ⚠️ below comented code is for rendering on server
-import { initializeApp, cert } from "firebase-admin/app";
-import fs from "fs";
+// import { initializeApp, cert } from "firebase-admin/app";
+// import fs from "fs";
 
-// Read Firebase credentials from Render's secret file path
-const firebaseConfigPath = "/etc/secrets/firebaseAdminConfig.json";
+// // Read Firebase credentials from Render's secret file path
+// const firebaseConfigPath = "/etc/secrets/firebaseAdminConfig.json";
 
-if (!fs.existsSync(firebaseConfigPath)) {
-    console.error("Firebase config file not found!");
-    process.exit(1);
-}
+// if (!fs.existsSync(firebaseConfigPath)) {
+//     console.error("Firebase config file not found!");
+//     process.exit(1);
+// }
 
-const firebaseConfig = JSON.parse(fs.readFileSync(firebaseConfigPath, "utf8"));
+// const firebaseConfig = JSON.parse(fs.readFileSync(firebaseConfigPath, "utf8"));
 
-const firebaseAdmin = initializeApp({
-    credential: cert(firebaseConfig)
-});
+// const firebaseAdmin = initializeApp({
+//     credential: cert(firebaseConfig)
+// });
 
-console.log("Firebase initialized successfully");
+// console.log("Firebase initialized successfully");
 
-export default firebaseAdmin;
+// export default firebaseAdmin;
 
 
 

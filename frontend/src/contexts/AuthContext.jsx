@@ -16,6 +16,19 @@ export const AuthProvider = ({ children }) => {
     console.error("❌ REACT_APP_BACKEND_URL is not defined in .env");
   }
 
+  // Function to refresh token periodically
+  const refreshToken = async (currentUser) => {
+    try {
+      const token = await currentUser.getIdToken(true); // Force refresh token
+      console.log("🔄 Token refreshed:", token);
+      // Optionally, you can notify backend or update user state if needed
+    } catch (error) {
+      console.error("❌ Token refresh error:", error);
+      // If refresh fails, logout user
+      await logout();
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setLoading(true);
@@ -36,6 +49,7 @@ export const AuthProvider = ({ children }) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
+          credentials: "include", // Include cookies in requests
         });
 
         const responseText = await res.text();
@@ -72,14 +86,23 @@ export const AuthProvider = ({ children }) => {
           photoURL: currentUser.photoURL,
         };
 
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(userData));
         setUser(userData);
+
+        // Set interval to refresh token every 15 minutes
+        const intervalId = setInterval(() => {
+          refreshToken(currentUser);
+        }, 15 * 60 * 1000);
+
+        setLoading(false); // Ensure loading is set to false here
+
+        // Clear interval on cleanup
+        return () => clearInterval(intervalId);
+
       } catch (error) {
         console.error("❌ Auth Error:", error);
+        setUser(null);
+        setLoading(false); // Ensure loading is set to false on error
       }
-
-      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -106,7 +129,6 @@ export const AuthProvider = ({ children }) => {
 
       const endpoint = register ? "google-register" : "google-login";
 
-      // ✅ Ensure userPayload is always defined
       if (register) {
         userPayload = { ...userPayload, name: user.displayName, email };
       }
@@ -115,6 +137,7 @@ export const AuthProvider = ({ children }) => {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: register ? JSON.stringify(userPayload) : undefined,
+        credentials: "include", // Include cookies
       });
 
       const responseText = await res.text();
@@ -135,7 +158,6 @@ export const AuthProvider = ({ children }) => {
           confirmButtonText: "OK",
         });
 
-
         navigate("/register", {
           state: {
             email,
@@ -148,16 +170,15 @@ export const AuthProvider = ({ children }) => {
 
       if (data.message.includes("User already registered")) {
         Swal.fire({
-            icon: "info",
-            title: "Already Registered",
-            text: "You are already registered. Redirecting to login.",
-            confirmButtonText: "OK",
+          icon: "info",
+          title: "Already Registered",
+          text: "You are already registered. Redirecting to login.",
+          confirmButtonText: "OK",
         }).then(() => {
-            navigate("/login");
+          navigate("/login");
         });
         return;
       }
-    
 
       const userData = {
         ...data.user,
@@ -167,8 +188,6 @@ export const AuthProvider = ({ children }) => {
         photoURL: user.photoURL,
       };
 
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(userData));
       setUser(userData);
       navigate("/");
       return data;
@@ -181,7 +200,6 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await signOut(auth);
-      localStorage.clear();
       setUser(null);
       navigate("/login");
     } catch (error) {
