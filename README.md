@@ -45,11 +45,7 @@ graph TD
     H --> I[Product Listed Successfully]
     G --> J[View Product Details]
     J --> K[Contact Seller via Platform]
-    K --> L[Direct Communication]
-    L --> M[Transaction Completion]
     I --> N[Receive Buyer Inquiries]
-    N --> O[Direct Communication with Buyer]
-    O --> P[Transaction Completion]
 ```
 
 ## 🎯 Benefits & Use Case
@@ -127,7 +123,7 @@ For questions or support, reach out to:
 
 Thanks to these awesome people who made this project possible 💖
 
-<p>
+<p align="center">
   <a href="https://github.com/DeepshikhaKeshri">
     <img src="https://github.com/DeepshikhaKeshri.png" width="60px;" style="border-radius:10px;" alt="Deepshikha Keshri"/>
   </a>
